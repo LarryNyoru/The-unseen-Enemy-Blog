@@ -1,0 +1,11 @@
+.dropCap {
+  float: left;
+  font-size: 3em;
+  line-height: 1;
+  margin-right: 0.1em;
+  font-weight: bold;
+}
+/* .input {
+  border-color: white;
+  border: none;
+} */
