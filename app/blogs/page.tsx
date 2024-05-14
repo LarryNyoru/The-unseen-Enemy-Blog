@@ -24,7 +24,7 @@ import Link from "next/link";
 import SocialMedia from "@/components/socialMedia/SocialMedia";
 import classes from "./page.module.css";
 
-function page() {
+function Page() {
   const blogs = [];
 
   const { data: posts } = useQuery<GraphQLData[]>({
@@ -62,7 +62,11 @@ function page() {
               className={classes.card}
             >
               <AspectRatio ratio={1920 / 1080}>
-                <Image src={blog?.featuredImage?.url} />
+                <Image
+                  key={blog.slug}
+                  src={blog?.featuredImage?.url}
+                  alt="IMG"
+                />
               </AspectRatio>
               <Group justify="space-between" pt="sm">
                 {" "}
@@ -70,7 +74,12 @@ function page() {
                   {blog.title}
                 </Text>
                 {blog.categories.map((i) => (
-                  <Button radius="xl" variant="light" color="indigo">
+                  <Button
+                    key={i.slug}
+                    radius="xl"
+                    variant="light"
+                    color="indigo"
+                  >
                     {i.name}
                   </Button>
                 ))}
@@ -87,4 +96,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

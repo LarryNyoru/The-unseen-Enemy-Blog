@@ -28,7 +28,7 @@ import { useMediaQuery } from "@mantine/hooks";
 
 import classes from "./page.module.css";
 
-function page({ params }: { params: { slug: string } }) {
+function Page({ params }: { params: { slug: string } }) {
   const [showMessage, setShowMessage] = useState(false);
   const [message, setMessage] = useState("");
   const mobileMatches = useMediaQuery("(max-width: 768px)");
@@ -311,4 +311,4 @@ function page({ params }: { params: { slug: string } }) {
   );
 }
 
-export default page;
+export default Page;

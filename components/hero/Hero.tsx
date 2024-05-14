@@ -98,9 +98,9 @@ function Hero() {
           <Grid>
             <Grid.Col span={mobileMatches ? 12 : 6}>
               <Text c="white" fs="italic" fz="lg">
-                Journey into Africa's unseen battles with The Unseen Enemy Blog.
-                Discover the quiet wars of geopolitics and climate change
-                shaping the continent's fate.
+                Journey into Africa`&apos;`s unseen battles with The Unseen
+                Enemy Blog. Discover the quiet wars of geopolitics and climate
+                change shaping the continent`&apos;`s fate.
               </Text>
             </Grid.Col>
           </Grid>

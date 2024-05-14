@@ -25,7 +25,7 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { getPosts } from "@/services";
 import { GraphQLData } from "@/types";
-import { IconInfoCircle } from "@tabler/icons-react";
+
 import { useMediaQuery } from "@mantine/hooks";
 
 import SocialMedia from "../socialMedia/SocialMedia";
@@ -101,7 +101,7 @@ function Blog() {
 
         <Grid.Col span={mobileMatches ? 12 : 6}>
           {blogs.slice(1).map((blog) => (
-            <Grid className={classes.blogs}>
+            <Grid key={blog.slug} className={classes.blogs}>
               <Grid.Col span={mobileMatches ? 12 : 3}>
                 <Paper
                   shadow="md"
@@ -128,7 +128,12 @@ function Blog() {
                         {blog.title}
                       </Text>
                       {blog.categories.map((i) => (
-                        <Button radius="xl" variant="light" color="indigo">
+                        <Button
+                          key={i.slug}
+                          radius="xl"
+                          variant="light"
+                          color="indigo"
+                        >
                           {i.name}
                         </Button>
                       ))}

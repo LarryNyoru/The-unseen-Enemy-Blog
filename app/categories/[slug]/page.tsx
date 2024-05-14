@@ -21,7 +21,7 @@ import React from "react";
 import classes from "./page.module.css";
 import SocialMedia from "@/components/socialMedia/SocialMedia";
 
-function page({ params }: { params: { slug: string } }) {
+function Page({ params }: { params: { slug: string } }) {
   const { data } = useQuery<GraphQLData[]>({
     queryKey: ["data"],
     queryFn: () => getCategoryPost(params.slug),
@@ -57,8 +57,8 @@ function page({ params }: { params: { slug: string } }) {
               href={`/blog/${encodeURIComponent(blog?.slug)}`}
               className={classes.card}
             >
-              <AspectRatio ratio={1920 / 1080}>
-                <Image src={blog?.featuredImage?.url} />
+              <AspectRatio key={blog.slug} ratio={1920 / 1080}>
+                <Image key={blog.slug} src={blog?.featuredImage?.url} />
               </AspectRatio>
               <Group justify="space-between" pt="sm">
                 {" "}
@@ -66,7 +66,12 @@ function page({ params }: { params: { slug: string } }) {
                   {blog?.title}
                 </Text>
                 {blog?.categories?.map((i) => (
-                  <Button radius="xl" variant="light" color="indigo">
+                  <Button
+                    key={i.slug}
+                    radius="xl"
+                    variant="light"
+                    color="indigo"
+                  >
                     {i?.name}
                   </Button>
                 ))}
@@ -83,4 +88,4 @@ function page({ params }: { params: { slug: string } }) {
   );
 }
 
-export default page;
+export default Page;
