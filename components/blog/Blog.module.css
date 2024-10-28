@@ -1,5 +1,5 @@
 .card {
-  height: rem(480px);
+  height: rem(497px);
   /* width: rem(460px); */
   display: flex;
   flex-direction: column;
@@ -25,7 +25,7 @@
   text-transform: uppercase;
 }
 .cardBlogs {
-  height: rem(140px);
+  height: rem(150px);
 
   /* display: flex;
   flex-direction: column;

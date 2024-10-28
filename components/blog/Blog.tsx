@@ -45,8 +45,9 @@ function Blog() {
       blogs.push(d);
     }
   }
+  const filteredBlog = blogs.filter((blog) => blog.profilePost === true);
+  console.log("Blogs", blogs);
 
-  // console.log("Blogs", blogs);
   return (
     <Box
       style={{
@@ -54,8 +55,13 @@ function Blog() {
         paddingRight: mobileMatches ? "20px" : "62px",
       }}
     >
-      <Group justify="space-between">
-        <Text pt="md" style={{ fontSize: 42 }}>
+      <Group
+        justify="space-between"
+        wrap="nowrap"
+        pt="md"
+        pb={mobileMatches ? "md" : "xs"}
+      >
+        <Text style={{ fontSize: mobileMatches ? 18 : 42 }}>
           Popular Articles
         </Text>
         <SocialMedia />
@@ -64,34 +70,34 @@ function Blog() {
       <Grid>
         <Grid.Col span={mobileMatches ? 12 : 4}>
           {" "}
-          {blogs.length > 0 && (
+          {filteredBlog.length > 0 && (
             <Paper
               shadow="md"
               p="md"
               radius="md"
               className={classes.card}
               style={{
-                backgroundImage: `url(${blogs[0]?.featuredImage.url})`,
+                backgroundImage: `url(${filteredBlog[0]?.featuredImage.url})`,
                 width: mobileMatches ? "100%" : "100%",
                 // backgroundSize: "cover",
                 // backgroundPosition: "center",
               }}
             >
               <div>
-                {blogs[0]?.categories.map((i) => (
+                {filteredBlog[0]?.categories.map((i) => (
                   <Text key={i?.slug} className={classes.category} size="xs">
                     {i?.name}
                   </Text>
                 ))}
                 <Title order={3} className={classes.title}>
-                  {blogs[0]?.title}
+                  {filteredBlog[0]?.title}
                 </Title>
               </div>
               <Button
                 variant="white"
                 color="dark"
                 component={Link}
-                href={`/blog/${encodeURIComponent(blogs[0].slug)}`}
+                href={`/blog/${encodeURIComponent(filteredBlog[0].slug)}`}
               >
                 Read article
               </Button>
@@ -100,51 +106,54 @@ function Blog() {
         </Grid.Col>
 
         <Grid.Col span={mobileMatches ? 12 : 6}>
-          {blogs.slice(1).map((blog) => (
-            <Grid key={blog.slug} className={classes.blogs}>
-              <Grid.Col span={mobileMatches ? 12 : 3}>
-                <Paper
-                  shadow="md"
-                  p="xl"
-                  mb="md"
-                  radius="md"
-                  className={classes.cardBlogs}
-                  style={{
-                    backgroundImage: `url(${blog?.featuredImage.url})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
-                />
-              </Grid.Col>
-              <Grid.Col span={mobileMatches ? 12 : 9}>
-                <Paper
-                  component={Link}
-                  href={`/blog/${encodeURIComponent(blog.slug)}`}
-                >
-                  <Stack gap="md">
-                    <Group justify="space-between">
-                      {" "}
-                      <Text size="xl" fw={500}>
-                        {blog.title}
-                      </Text>
-                      {blog.categories.map((i) => (
-                        <Button
-                          key={i.slug}
-                          radius="xl"
-                          variant="light"
-                          color="indigo"
-                        >
-                          {i.name}
-                        </Button>
-                      ))}
-                    </Group>
+          {blogs
+            .filter((blog) => blog.profilePost != true)
+            .slice(-3)
+            .map((blog) => (
+              <Grid key={blog.slug} className={classes.blogs}>
+                <Grid.Col span={mobileMatches ? 12 : 3}>
+                  <Paper
+                    shadow="md"
+                    p="xl"
+                    mb="md"
+                    radius="md"
+                    className={classes.cardBlogs}
+                    style={{
+                      backgroundImage: `url(${blog?.featuredImage.url})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  />
+                </Grid.Col>
+                <Grid.Col span={mobileMatches ? 12 : 9}>
+                  <Paper
+                    component={Link}
+                    href={`/blog/${encodeURIComponent(blog.slug)}`}
+                  >
+                    <Stack gap="md">
+                      <Group justify="space-between">
+                        {" "}
+                        <Text size="xl" fw={500}>
+                          {blog.title}
+                        </Text>
+                        {blog.categories.map((i) => (
+                          <Button
+                            key={i.slug}
+                            radius="xl"
+                            variant="light"
+                            color="indigo"
+                          >
+                            {i.name}
+                          </Button>
+                        ))}
+                      </Group>
 
-                    <Text c="dimmed">{blog.excerpt}</Text>
-                  </Stack>
-                </Paper>
-              </Grid.Col>
-            </Grid>
-          ))}
+                      <Text c="dimmed">{blog.excerpt}</Text>
+                    </Stack>
+                  </Paper>
+                </Grid.Col>
+              </Grid>
+            ))}
         </Grid.Col>
         <Grid.Col span={mobileMatches ? 12 : 2} pl="xl">
           <Stack align="flex-end">

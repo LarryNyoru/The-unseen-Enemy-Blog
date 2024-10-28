@@ -15,14 +15,14 @@
 .inner {
   position: relative;
   z-index: 1;
-  padding-left: 62px;
+  /* padding-left: 62px; */
 }
 
 .title {
   font-weight: 800;
   font-size: rem(42px);
   letter-spacing: rem(-1px);
-  padding-left: var(--mantine-spacing-md);
+  /* padding-left: var(--mantine-spacing-md); */
   padding-right: var(--mantine-spacing-md);
   color: var(--mantine-color-white);
   margin-bottom: var(--mantine-spacing-xs);
@@ -50,10 +50,10 @@
 }
 
 .controls {
-  margin-top: calc(var(--mantine-spacing-xl) * 1);
+  margin-top: calc(var(--mantine-spacing-md) * 1);
   display: flex;
 
-  padding-left: var(--mantine-spacing-md);
+  /* padding-left: var(--mantine-spacing-md); */
   padding-right: var(--mantine-spacing-md);
 
   @media (max-width: $mantine-breakpoint-xs) {

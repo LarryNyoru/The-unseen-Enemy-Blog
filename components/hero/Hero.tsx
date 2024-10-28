@@ -1,13 +1,14 @@
 "use client";
 import React from "react";
 
-import cx from "clsx";
+// import cx from "clsx";
 import {
   Title,
   Text,
   Button,
   Overlay,
   TextInput,
+  Stack,
   rem,
   Group,
   Menu,
@@ -35,9 +36,40 @@ function Hero() {
     <div className={classes.wrapper}>
       <Overlay color="#000" opacity={0.65} zIndex={1} />
 
-      <div className={classes.inner}>
-        <Group justify="space-between">
+      <div
+        className={classes.inner}
+        style={{ paddingLeft: mobileMatches ? "10px" : "62px" }}
+      >
+        <Stack>
           <>
+            <Group style={{ paddingRight: "62px" }}>
+              <Text component={Link} href="/" c="white" fw={800}>
+                Home
+              </Text>
+              <Text component={Link} href="/blogs" c="white" fw={800}>
+                Blogs
+              </Text>
+              <Menu withArrow trigger="click-hover">
+                <Menu.Target>
+                  <Group>
+                    <Text c="white" fw={800}>
+                      Categories
+                    </Text>
+                  </Group>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  {categories?.map((c) => (
+                    <Menu.Item
+                      key={c.slug}
+                      component={Link}
+                      href={`/categories/${encodeURIComponent(c.slug)}`}
+                    >
+                      {c.name}
+                    </Menu.Item>
+                  ))}
+                </Menu.Dropdown>
+              </Menu>
+            </Group>
             <Title className={classes.title}>
               The Unseen{" "}
               <Text component="span" inherit className={classes.highlight}>
@@ -45,35 +77,7 @@ function Hero() {
               </Text>
             </Title>
           </>
-          <Group style={{ paddingRight: "62px" }}>
-            <Text component={Link} href="/" c="white" fw={800}>
-              Home
-            </Text>
-            <Text component={Link} href="/blogs" c="white" fw={800}>
-              Blogs
-            </Text>
-            <Menu withArrow trigger="click-hover">
-              <Menu.Target>
-                <Group>
-                  <Text c="white" fw={800}>
-                    Categories
-                  </Text>
-                </Group>
-              </Menu.Target>
-              <Menu.Dropdown>
-                {categories?.map((c) => (
-                  <Menu.Item
-                    key={c.slug}
-                    component={Link}
-                    href={`/categories/${encodeURIComponent(c.slug)}`}
-                  >
-                    {c.name}
-                  </Menu.Item>
-                ))}
-              </Menu.Dropdown>
-            </Menu>
-          </Group>
-        </Group>
+        </Stack>
         <div className={classes.controls}>
           {/* <TextInput
             radius="xl"
@@ -98,9 +102,9 @@ function Hero() {
           <Grid>
             <Grid.Col span={mobileMatches ? 12 : 6}>
               <Text c="white" fs="italic" fz="lg">
-                Journey into Africa`&apos;`s unseen battles with The Unseen
-                Enemy Blog. Discover the quiet wars of geopolitics and climate
-                change shaping the continent`&apos;`s fate.
+                Journey into Africa&apos;s unseen battles with The Unseen Enemy
+                Blog. Discover the quiet wars of geopolitics and climate change
+                shaping the continent&apos;s fate.
               </Text>
             </Grid.Col>
           </Grid>

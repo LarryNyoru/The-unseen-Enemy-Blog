@@ -12,6 +12,8 @@ type GraphQLData = {
     };
     slug: string;
     title: string;
+    featuredPost: boolean;
+    profilePost: boolean;
   };
 };
 

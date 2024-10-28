@@ -21,6 +21,8 @@ export const getPosts = async () => {
             slug
             title
             excerpt
+            featuredPost
+            profilePost
             featuredImage {
               url
             }
