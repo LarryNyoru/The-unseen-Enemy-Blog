@@ -62,7 +62,7 @@ function Blog() {
         pb={mobileMatches ? "md" : "xs"}
       >
         <Text style={{ fontSize: mobileMatches ? 18 : 42 }}>
-          opular Articles
+          Popular Articles
         </Text>
         <SocialMedia />
       </Group>
