@@ -62,7 +62,7 @@ function Blog() {
         pb={mobileMatches ? "md" : "xs"}
       >
         <Text style={{ fontSize: mobileMatches ? 18 : 42 }}>
-          Popular Articles
+          opular Articles
         </Text>
         <SocialMedia />
       </Group>
@@ -133,19 +133,14 @@ function Blog() {
                     <Stack gap="md">
                       <Group justify="space-between">
                         {" "}
-                        <Text size="xl" fw={500}>
+                        <Text size="xl" fw={500} c="black">
                           {blog.title}
                         </Text>
-                        {blog.categories.map((i) => (
-                          <Button
-                            key={i.slug}
-                            radius="xl"
-                            variant="light"
-                            color="indigo"
-                          >
+                        {/* {blog.categories.map((i) => (
+                          <Button key={i.slug} radius="xl" variant="light">
                             {i.name}
                           </Button>
-                        ))}
+                        ))} */}
                       </Group>
 
                       <Text c="dimmed">{blog.excerpt}</Text>
@@ -158,7 +153,6 @@ function Blog() {
         <Grid.Col span={mobileMatches ? 12 : 2} pl="xl">
           <Stack align="flex-end">
             <Blockquote
-              color="blue"
               iconSize={41}
               cite="– Dr Kwame Nkrumah"
               icon={<FaQuoteLeft />}

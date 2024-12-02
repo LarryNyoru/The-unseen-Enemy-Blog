@@ -27,6 +27,7 @@ import { postComments } from "@/hooks/postComments";
 import { useMediaQuery } from "@mantine/hooks";
 
 import classes from "./page.module.css";
+import { BackBtn } from "@/components/ui/BackBtn";
 
 function Page({ params }: { params: { slug: string } }) {
   const [showMessage, setShowMessage] = useState(false);
@@ -189,9 +190,12 @@ function Page({ params }: { params: { slug: string } }) {
         }}
       >
         <Group justify="space-between">
-          <Text pt="md" style={{ fontSize: 42 }}>
-            {blog?.title}
-          </Text>
+          <Group justify="center">
+            <BackBtn type="icon" />
+            <Text style={{ fontSize: mobileMatches ? 18 : 42 }}>
+              {blog?.title}
+            </Text>
+          </Group>
 
           <SocialMedia />
         </Group>
@@ -258,8 +262,12 @@ function Page({ params }: { params: { slug: string } }) {
                       className={classes.input}
                     />
 
-                    <Button radius="lg" type="submit">
-                      Submit Comment
+                    <Button
+                      radius="lg"
+                      type="submit"
+                      className={classes.button}
+                    >
+                      <span className={classes.text}>Submit Comment</span>
                     </Button>
                     {showMessage && (
                       <Text style={{ color: messageColor }}>{message}</Text>

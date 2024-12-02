@@ -20,6 +20,7 @@ import React from "react";
 
 import classes from "./page.module.css";
 import SocialMedia from "@/components/socialMedia/SocialMedia";
+import { BackBtn } from "@/components/ui/BackBtn";
 
 function Page({ params }: { params: { slug: string } }) {
   const { data } = useQuery<GraphQLData[]>({
@@ -41,9 +42,13 @@ function Page({ params }: { params: { slug: string } }) {
       <Hero />
       <Box style={{ paddingLeft: "62px", paddingRight: "62px" }}>
         <Group justify="space-between">
-          <Text pt="md" style={{ fontSize: 42 }}>
-            {params.slug}
-          </Text>
+          <Group justify="center">
+            <BackBtn type="icon" />
+            <Text pt="md" style={{ fontSize: 42 }}>
+              {params.slug}
+            </Text>
+          </Group>
+
           <SocialMedia />
         </Group>
         <Divider pb="md" />

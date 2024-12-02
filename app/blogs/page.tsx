@@ -23,9 +23,12 @@ import Link from "next/link";
 
 import SocialMedia from "@/components/socialMedia/SocialMedia";
 import classes from "./page.module.css";
+import { useMediaQuery } from "@mantine/hooks";
+import { BackBtn } from "@/components/ui/BackBtn";
 
 function Page() {
   const blogs = [];
+  const mobileMatches = useMediaQuery("(max-width: 768px)");
 
   const { data: posts } = useQuery<GraphQLData[]>({
     queryKey: ["blogs"],
@@ -42,20 +45,33 @@ function Page() {
   return (
     <div>
       <Hero />
-      <Box style={{ paddingLeft: "62px", paddingRight: "62px" }}>
+      <Box
+        style={{
+          paddingLeft: mobileMatches ? "15px" : "52px",
+          paddingRight: mobileMatches ? "15px" : "52px",
+        }}
+        pt="md"
+      >
         <Group justify="space-between">
-          <Text pt="md" style={{ fontSize: 42 }}>
-            Blog Articles
-          </Text>
+          <Group align="center">
+            <BackBtn type="icon" />
+            <Text style={{ fontSize: mobileMatches ? 18 : 42 }}>
+              Blog Articles
+            </Text>
+          </Group>
+
           <SocialMedia />
         </Group>
-        <Divider pb="md" />
+        <Divider
+          pb={mobileMatches ? "sm" : "sm"}
+          mt={mobileMatches ? "sm" : "sm"}
+        />
 
         <SimpleGrid cols={{ base: 1, sm: 3 }}>
           {blogs.map((blog) => (
             <Card
+              style={{ paddingLeft: "0px" }}
               key={blog?.slug}
-              p="md"
               radius="md"
               component={Link}
               href={`/blog/${encodeURIComponent(blog.slug)}`}
@@ -73,7 +89,7 @@ function Page() {
                 <Text size="xl" className={classes.title} fw={500}>
                   {blog.title}
                 </Text>
-                {blog.categories.map((i) => (
+                {/* {blog.categories.map((i) => (
                   <Button
                     key={i.slug}
                     radius="xl"
@@ -82,7 +98,7 @@ function Page() {
                   >
                     {i.name}
                   </Button>
-                ))}
+                ))} */}
               </Group>
 
               <Text c="dimmed" size="xs" fw={700} mt="md">
