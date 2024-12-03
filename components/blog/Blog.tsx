@@ -8,17 +8,12 @@ import {
   Paper,
   Box,
   Grid,
-  Card,
-  Image,
-  Avatar,
   Group,
   Stack,
   Divider,
-  ActionIcon,
-  rem,
   Blockquote,
 } from "@mantine/core";
-import { notifications } from "@mantine/notifications";
+
 import { FaQuoteLeft } from "react-icons/fa";
 
 import Link from "next/link";
